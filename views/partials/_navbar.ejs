@@ -1,0 +1,11 @@
+<nav>
+    <a href="/">Home</a>
+    <% if(user) { %>
+    <a href="/recipes">View Recipes</a>
+    <a href="/ingredients">View Ingredients</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <% } else { %>
+    <a href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up">Sign Up</a>
+    <% } %>
+</nav>
