@@ -8,8 +8,9 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
-const recipesController = require('./controllers/recipes.js');
-const ingredientsController = require('./controllers/ingredients.js');
+const booksController = require('./controllers/books.js');
+const bookClubController = require('./controllers/bookClub.js');
+const usersController=require('./controllers/users.js')
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
@@ -24,7 +25,8 @@ mongoose.connection.on('connected', () => {
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -36,12 +38,9 @@ app.use(
 app.use(passUserToView);
 
 app.get('/', (req, res) => {
-  // Check if the user is signed in
-  if (req.session.user) {
-    // Redirect signed-in users to their recipes index
-    res.redirect('/recipes');
-  } else {
-    // Show the homepage for users who are not signed in
+  if (req.session.user) {// Redirect signed-in users to their books index
+    res.redirect('/users/profile');
+  } else {// Show the homepage for users who are not signed in
     res.render('index.ejs');
   }
 });
@@ -50,8 +49,9 @@ app.use('/auth', authController);
 
 app.use(isSignedIn);
 
-app.use('/recipes', recipesController);
-app.use('/ingredients', ingredientsController);
+app.use('/books', booksController);
+// app.use('/bookclub', bookClubController);
+app.use('/users', usersController)
  
 
 app.listen(port, () => {

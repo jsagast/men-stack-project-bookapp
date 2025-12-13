@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Profile</title>
+    </head>
+    <body>
+        <%- include('../partials/_navbar.ejs') %>
+        <h1>My Profile</h1>
+        <h2>Books in my Shelf</h2>
+            <ul>
+                <% myShelf.forEach((item) => { %>
+                <li>
+                    Name: <%= item.name %> added by <%=
+                    item.owner.username %>.
+                    <a href="/books/<%= book._id %>">See Details.</a>
+                </li>
+                <% }) %>
+            </ul>
+
+        <h2><%= myBooks.length === 1 ? 'Book' : 'Books' %> I own</h2>
+            <ul>
+                <% myBooks.forEach((book) => { %>
+                <li>
+                    Name: <%= book.name %>  by <%=book.author %>.
+                    <a href="/books/<%= book._id %>">See Details.</a>
+                </li>
+                <% }) %>
+            </ul>
+        <h2>My Favorite <%= myFavoriteBooks.length === 1 ? 'Book' : 'Books' %> </h2>
+        <ul>
+            <% myFavoriteBooks.forEach((book) => { %>
+            <li>
+                Name: <%= book.name %>  by <%=book.author %>.
+                <a href="/books/<%= book._id %>">See Details.</a>
+            </li>
+            <% }) %>
+        </ul>
+    </body>
+</html>

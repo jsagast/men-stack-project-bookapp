@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Recipes</title>
+    <title>Library</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Welcome to My Recipes</h1>
-    <a href="/recipes/new">Add a Recipe</a>
+    <h1>All Books</h1>
+    <a href="/books/new">Add a New Book</a>
     <ul>
-      <% recipes.forEach((recipe) => { %>
+      <% books.forEach((book) => { %>
       <li>
-        <a href="/recipes/<%= recipe._id %>">
-        <%= recipe.name %> owned by <%= recipe.owner.username %>.
+        <a href="/books/<%= book._id %>">
+        <%= book.name %> owned by <%= book.owner.username %>.
       </li>
       <% }) %>
     </ul>

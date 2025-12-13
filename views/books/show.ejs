@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= book.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>A CLOSER LOOK</h1>
+    <h2><%= book.name %> by <%= book.author%></h2>
+    <section id="content">
+      <div>
+        <p>Genre: <%= book.genre %></p>
+        <p>No. of pages:<%= book.pages %></p>
+      </div>
+      <div>
+        <p><%= book.description %></p>
+        <p>Owner: <%= book.owner.username %></p>
+      </div>
+
+    
+   <!-- Edit and delete if owner -->
+     <% if (book.owner._id.equals(user._id)) { %>
+      <a href="/books/<%= book._id %>/edit"> Edit this Entry </a>
+      <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this Book</button>
+      </form>
+    <% } %>
+
+    <!--  Managing Favorites-->
+   <% if (userHasFavorited) { %>
+        <p>This is one of you favorite books!</p>
+        <form
+            action="/books/<%= book._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit">Unfavorite it</button>
+        </form>
+        <% } else { %>
+        <p>Do you want to add this book to your favorites?.</p>
+
+        <form
+            action="/books/<%= book._id %>/favorited-by/<%= user._id %>"method="POST">
+            <button type="submit">Add to My Favorites</button>
+        </form>
+
+    <% } %>
+
+    <!--  Add to Shelf-->
+   <% if (userHasPulled) { %>
+        <p>You have this book in your shelf!</p>
+        <form
+            action="/books/<%= book._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit">Remove from Shelf</button>
+        </form>
+        <% } else { %>
+        <p>Do you want to add this book to your shelf?</p>
+
+        <form
+            action="/books/<%= book._id %>/favorited-by/<%= user._id %>"method="POST">
+            <button type="submit">Add to My Shelf</button>
+        </form>
+
+    <% } %>
+
+  </body>
+</html>
+
+
