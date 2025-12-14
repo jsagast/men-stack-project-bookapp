@@ -29,17 +29,30 @@ router.get('/new', async(req,res)=>{
 });
 
 //post new
+// router.post('/', async (req, res) => {
+//   try {
+//     const newBook=new Book(req.body);
+//     newBook.owner=req.session.user._id
+//     await newBook.save();
+//     res.redirect('/books');
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect('/');
+//   }
+// });
+
+//new 2 
 router.post('/', async (req, res) => {
   try {
-    const newBook=new Book(req.body);
-    newBook.owner=req.session.user._id
-    await newBook.save();
+    const exists= await Book.findOne({ name: req.body.name });
+    !exists? await Book.create(req.body): res.send("This Book already exists.");// this doesnt work create req.flash read middleware
     res.redirect('/books');
   } catch (error) {
     console.log(error);
     res.redirect('/');
   }
 });
+
 
 //show book detail
 router.get('/:bookId', async (req, res) => {
@@ -75,8 +88,59 @@ router.post('/:bookId/favorited-by/:userId', async (req, res) => {
     }
 });
 
+
+//Delete
+
+
+//Update
+
+router.get('/:bookId/edit', async (req, res) => {
+  try {
+    const currentBook = await Book.findById(req.params.bookId);
+    // const ingredients=await Book.find()
+    res.render('books/edit.ejs', {
+      book: currentBook,
+      // ingredients:ingredients
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
+router.put('/:bookId', async (req, res) => {
+  try {
+    const currentBook = await Book.findById(req.params.bookId);
+    if (currentBook.owner.equals(req.session.user._id)) {
+    currentBook.set(req.body);// to update
+    await currentBook.save();
+    res.redirect('/books');
+    } else {
+      res.send("You don't have permission to do that.");
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
+// router.get('/:listingId/edit', async (req, res) => {
+//     try {
+//         const currentListing = await Listing.findById(req.params.listingId)
+//         res.render('listings/edit.ejs', {
+//             listing: currentListing,
+//         })
+//     } catch (error) {
+//         console.log(error)
+//         res.redirect('/')
+//     }
+// })
+
+
+
+
 // POST add to shelf
-router.post('/:bookId/pulled-by/:bookId', async (req, res) => {
+router.post('/:bookId/pulled-by/:userId', async (req, res) => {
     try {
         await Book.findByIdAndUpdate(req.params.bookId, {
             $push: { pulledByUsers:req.params.userId },
@@ -86,7 +150,31 @@ router.post('/:bookId/pulled-by/:bookId', async (req, res) => {
         console.log(error)
         res.redirect('/')
     }
-})
+});
+
+router.delete('/:bookId/favorited-by/:userId', async (req, res) => {
+    try {
+        await Book.findByIdAndUpdate(req.params.bookId, {
+            $pull: { favoritedByUsers: req.params.userId },
+        })
+        res.redirect(`/books/${req.params.bookId}`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+});
+
+router.delete('/:bookId/pulled-by/:userId', async (req, res) => {
+    try {
+        await Book.findByIdAndUpdate(req.params.bookId, {
+            $pull: { pulledByUsers: req.params.userId },
+        })
+        res.redirect(`/books/${req.params.bookId}`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+});
 
 // //delete
 // router.delete('/:recipeId', async (req, res) => {
@@ -102,35 +190,6 @@ router.post('/:bookId/pulled-by/:bookId', async (req, res) => {
 //   }
 // });
 
-// router.get('/:recipeId/edit', async (req, res) => {
-//   try {
-//     const currentRecipe = await Recipe.findById(req.params.recipeId);
-//     const ingredients=await Ingredient.find()
-//     res.render('recipes/edit.ejs', {
-//       recipe: currentRecipe,
-//       ingredients:ingredients
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.redirect('/');
-//   }
-// });
 
-
-// router.put('/:recipeId', async (req, res) => {
-//   try {
-//     const currentRecipe = await Recipe.findById(req.params.recipeId);
-//     // if (currentListing.owner.equals(req.session.user._id)) {
-//     currentRecipe.set(req.body);// to update
-//     await currentRecipe.save();
-//     res.redirect('/recipes');
-//     // } else {
-//     //   res.send("You don't have permission to do that.");
-//     // }
-//   } catch (error) {
-//     console.log(error);
-//     res.redirect('/');
-//   }
-// });
 
 module.exports = router;

@@ -3,33 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit <%= recipe.name %></title>
+    <title>Edit</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Edit a Recipe!</h1>
-    <form action="/recipes/<%= recipe._id %>?_method=PUT"  method="POST">
+    <h1>Edit My Book </h1>
+    <form action="/books/<%= book._id %>?_method=PUT"  method="POST">
       <div>
-        <label for="name">Recipe Name: </label>
-        <input  type="text" id="name" name="name" value="<%= recipe.name%>" >
+        <label for="name"> Book Title: </label>
+        <input  type="text" id="name" name="name" value="<%= book.name%>" required>
       </div>
       <div>
-        <label for="instructions">Instructions: </label>
-        <textarea  id="instructions" name="instructions" rows="5" maxlength="500"><%=recipe.instructions%></textarea>
+        <label for="name"> Author: </label>
+        <input  type="text" id="name" name="author" value="<%= book.author%>" required>
       </div>
       <div>
-        <label>Ingredients: </label>
+        <label for="desription">Description: </label>
+        <textarea  id="description" name="description" rows="5" maxlength="500" required><%=book.description%></textarea>
+      </div>
       <div>
-        <% ingredients.forEach(ingredient => { %>
-        <div>
-          <input  type="checkbox" name="ingredients" value="<%= ingredient._id %>" id="ingredient-<%= ingredient._id %>" <%=recipe.ingredients.includes(ingredient._id)? "checked":"" %>>
-          <label for="ingredient-<%= ingredient._id %>"><%= ingredient.name %></label>
-        </div>
-        <% }) %>
+        <label for="genre"> Literary Genre: </label>
+        <input list="genres" id="genre" name="genre" value="<%= book.genre %>" placeholder="Select or type a genre" required>
+          <datalist id="genres">
+            <option value="Fantasy">
+            <option value="Science Fiction">
+            <option value="Mystery">
+            <option value="Thriller">
+            <option value="Romance">
+            <option value="Historical Fiction">
+            <option value="Horror">
+            <option value="Adventure">
+            <option value="Biography">
+            <option value="Memoir">
+            <option value="Self-Help">
+            <option value="History">
+            <option value="Science">
+            <option value="Travel">
+            <option value="Essay">
+            <option value="Philosophy">
+            <option value="Poetry">
+            <option value="Drama">
+            <option value="Graphic Novel">
+          </datalist>
       </div>
+      <div>
+        <label for="pages"> Number of Pages: </label>
+        <input  type="number" id="pages" name="pages" min="0" value="<%= book.pages %>"required>
       </div>
-
-      <button type="submit">Edit Recipe</button>
+      <button type="submit">Update</button>
     </form>
   </body>
 </html>
+

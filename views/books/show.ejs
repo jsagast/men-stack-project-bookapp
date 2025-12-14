@@ -15,14 +15,14 @@
         <p>No. of pages:<%= book.pages %></p>
       </div>
       <div>
-        <p><%= book.description %></p>
+        <p>Briefing: <%= book.description %></p>
         <p>Owner: <%= book.owner.username %></p>
       </div>
 
     
    <!-- Edit and delete if owner -->
      <% if (book.owner._id.equals(user._id)) { %>
-      <a href="/books/<%= book._id %>/edit"> Edit this Entry </a>
+      <a href="/books/<%= book._id %>/edit" class="btn"> Edit this Entry </a>
       <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete this Book</button>
       </form>
@@ -49,14 +49,14 @@
    <% if (userHasPulled) { %>
         <p>You have this book in your shelf!</p>
         <form
-            action="/books/<%= book._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
+            action="/books/<%= book._id %>/pulled-by/<%= user._id %>?_method=DELETE" method="POST">
             <button type="submit">Remove from Shelf</button>
         </form>
         <% } else { %>
         <p>Do you want to add this book to your shelf?</p>
 
         <form
-            action="/books/<%= book._id %>/favorited-by/<%= user._id %>"method="POST">
+            action="/books/<%= book._id %>/pulled-by/<%= user._id %>"method="POST">
             <button type="submit">Add to My Shelf</button>
         </form>
 
