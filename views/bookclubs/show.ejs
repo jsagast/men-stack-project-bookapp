@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= bookClub.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= bookClub.name %></h1>
+    <h2>Details</h2>
+    <section id="content">
+      <div>
+        <p>Frequency of Meetings: <%= bookClub.frequency %></p>
+        <p>Host: <%= bookClub.owner.username%></p>
+        <p><%= bookClub.members.length === 0 ? 'Ready to be the First Guest Member?':bookClub.members.length === 1? 'Member:': 'Members:' %></p>
+            <ul>
+                <% bookClub.members.forEach((member) => { %>
+                <li>
+                    <%= member.username %> 
+                </li>
+                <% }) %>
+            </ul>
+
+        <p><%= bookClub.shelf.length === 0 ? 'No Books Added Yet': bookClub.shelf.length === 1? 'Book:': 'Books:' %></p>
+            <ul>
+                <% bookClub.shelf.forEach((book) => { %>
+                <li>
+                    <%= book.name %>  by <%=book.author %>.
+                    <a href="/books/<%= book._id %>">See Details.</a>
+                </li>
+                <% }) %>
+            </ul>
+      </div>
+
+   <!-- Edit and delete if owner -->
+     <% if (bookClub.owner._id.equals(user._id)) { %>
+      <a href="/bookclubs/<%= bookClub._id %>/edit" class="btn"> Edit this Club </a>
+      <form action="/bookclubs/<%= bookClub._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this Club</button>
+      </form>
+    <% } %>
+    <%if (userHasJoined){%>
+        <p> You are part of this Club!</p>
+        <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit">Leave the Club</button>
+        </form>
+     <% } else { %>
+        <p> Join today!</p>
+        <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>" method="POST">
+            <button type="submit">Join this Club</button>
+        </form>
+    <% } %>
+  </body>
+</html>
+
+

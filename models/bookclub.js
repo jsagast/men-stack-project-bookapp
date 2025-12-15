@@ -5,6 +5,10 @@ const bookClubSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    frequency:{
+        type:String,
+        required: true
+    },
     owner:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,

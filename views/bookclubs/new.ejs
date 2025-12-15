@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Book Clubs</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Start a New Book Club </h1>
+    <form action="/bookclubs" method="POST">
+      <div>
+        <label for="name"> Name: </label>
+        <input  type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="frequency"> Meeting Frequency: </label>
+        <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a genre" required>
+          <datalist id="frequencies">
+            <option value="Weekly">
+            <option value="Bi-Weekly">
+            <option value="Monthly">
+          </datalist>
+      </div>
+      <div>
+        <label for="bookSelect">Choose a Book for this Club</label>
+          <select id="bookSelect" name="shelf" multiple >
+            <option value="" selected disabled hidden>Select</option>
+            <% books.forEach(book => { %>
+              <option value="<%= book._id %>"><%= book.name %></option>
+            <% }) %>
+          </select>
+      </div>
+
+      <button type="submit">Start Book Club</button>
+    </form>
+
+    <%- include('../partials/messages.ejs') %>
+    
+  </body>
+</html>

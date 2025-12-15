@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
+    <title>Book Clubs</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1>All Books</h1>
-    <a href="/books/new">Add a New Book</a>
+    <h1>Book Club Lounge</h1>
+    <a href="/bookclubs/new">Start a New Book Club</a>
     <ul>
-      <% books.forEach((book) => { %>
+      <% bookClubs.forEach((club) => { %>
       <li>
-        <a href="/books/<%= book._id %>">
-        <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username %>.
+        <a href="/bookclubs/<%= club._id %>"> Explore Club. </a>
+        <%= club.name %>. Hosted by  <%= club.owner.username %>.
       </li>
       <% }) %>
     </ul>
@@ -23,5 +23,4 @@
 
   </body>
 </html>
-
 

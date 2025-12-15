@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const authController = require('./controllers/auth.js');
 const booksController = require('./controllers/books.js');
@@ -35,6 +36,14 @@ app.use(
   })
 );
 
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
+
 app.use(passUserToView);
 
 app.get('/', (req, res) => {
@@ -50,7 +59,7 @@ app.use('/auth', authController);
 app.use(isSignedIn);
 
 app.use('/books', booksController);
-// app.use('/bookclub', bookClubController);
+app.use('/bookclubs', bookClubController);
 app.use('/users', usersController)
  
 
