@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= bookClub.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
@@ -12,7 +14,7 @@
     <section id="content">
       <div>
         <p>Frequency of Meetings: <%= bookClub.frequency %></p>
-        <p>Host: <%= bookClub.owner.username%></p>
+        <p>Administrator: <%= bookClub.owner.username%></p>
         <p><%= bookClub.members.length === 0 ? 'Ready to be the First Guest Member?':bookClub.members.length === 1? 'Member:': 'Members:' %></p>
             <ul>
                 <% bookClub.members.forEach((member) => { %>
@@ -28,9 +30,27 @@
                 <li>
                     <%= book.name %>  by <%=book.author %>.
                     <a href="/books/<%= book._id %>">See Details.</a>
+                    <% if (bookClub.owner._id.equals(user._id)) { %>
+                            <form action="/bookclubs/<%= bookClub._id %>?_method=DELETE" method="POST">
+                            <button type="submit">Delete this Club</button>
+                    <% } %>
                 </li>
                 <% }) %>
             </ul>
+        <% if (bookClub.owner._id.equals(user._id)) { %>
+        <div>
+            <form action="" method="POST"></form>/// DO THIS!!!!
+            <label for="bookSelect">Add a Book for this Club</label>
+            <select id="bookSelect" name="shelf" multiple >
+                <option value="" selected disabled hidden>Select</option>
+                <% books.forEach(book => { %>
+                <option value="<%= book._id %>"><%= book.name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <% } else{%>
+        <p>Do you want to propose a new book? Contact <%= bookClub.owner.username%></p>
+        <% } %>
       </div>
 
    <!-- Edit and delete if owner -->
@@ -51,6 +71,8 @@
             <button type="submit">Join this Club</button>
         </form>
     <% } %>
+
+    <%- include('../partials/footer') %>
   </body>
 </html>
 

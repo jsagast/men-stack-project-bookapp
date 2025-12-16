@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
+const path = require("path");
+
 
 const authController = require('./controllers/auth.js');
 const booksController = require('./controllers/books.js');
@@ -27,6 +29,8 @@ mongoose.connection.on('connected', () => {
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, "public")));
+
 
 app.use(
   session({

@@ -53,12 +53,14 @@ router.post('/', async (req, res) => {
 router.get('/:bookclubId', async (req, res) => {
   try {
     const bookClub = await BookClub.findById(req.params.bookclubId).populate('owner').populate('shelf').populate('members');
+    const books=await Book.find();
     const userHasJoined = bookClub.members.some((user) =>
       user.equals(req.session.user._id)
     );
     res.render('bookclubs/show.ejs', {
       bookClub, 
       userHasJoined,
+      books
     });
   } catch (error) {
     console.log(error);
