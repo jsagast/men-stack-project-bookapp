@@ -17,7 +17,7 @@
       </div>
       <div>
         <label for="frequency"> Meeting Frequency: </label>
-        <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a genre" required>
+        <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a frequency" required>
           <datalist id="frequencies">
             <option value="Weekly">
             <option value="Bi-Weekly">
@@ -26,7 +26,7 @@
       </div>
       <div>
         <label for="bookSelect">Choose a Book for this Club</label>
-          <select id="bookSelect" name="shelf" multiple >
+          <select id="bookSelect" name="shelf" >
             <option value="" selected disabled hidden>Select</option>
             <% books.forEach(book => { %>
               <option value="<%= book._id %>"><%= book.name %></option>

@@ -14,6 +14,18 @@
     <section id="content">
       <div>
         <p>Frequency of Meetings: <%= bookClub.frequency %></p>
+        <% if (bookClub.owner._id.equals(user._id)) { %>
+          <form action="/bookclubs/<%= bookClub._id %>?_method=PUT" method="POST">
+            <label for="frequency"> Edit Frequency: </label>
+            <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a frequency" value="<%= bookClub.frequency %>" required >
+                <datalist id="frequencies">
+                  <option value="Weekly">
+                  <option value="Bi-Weekly">
+                  <option value="Monthly">
+              </datalist>
+            <button type="submit">Update the Frequency</button>
+          </form>
+        <% } %>
         <p>Administrator: <%= bookClub.owner.username%></p>
         <p><%= bookClub.members.length === 0 ? 'Ready to be the First Guest Member?':bookClub.members.length === 1? 'Member:': 'Members:' %></p>
             <ul>
@@ -24,30 +36,40 @@
                 <% }) %>
             </ul>
 
-        <p><%= bookClub.shelf.length === 0 ? 'No Books Added Yet': bookClub.shelf.length === 1? 'Book:': 'Books:' %></p>
-            <ul>
-                <% bookClub.shelf.forEach((book) => { %>
+        <h2><%= bookClub.shelf.length === 0 ? 'No Books Added Yet': bookClub.shelf.length === 1? 'Book:': 'Books:' %></h2>
+          <% if (bookClub.owner._id.equals(user._id)) { %>
+          <div>
+              <form action="/bookclubs/<%= bookClub._id %>" method="POST">
+                <label for="bookId"><h4>Add a book to this club </h4></label>
+                <div class="same-line">
+                  <select id="bookId" name="bookId" required>
+                    <option value="" disabled selected>Select a book</option>
+                    <% books.forEach(book => { %>
+                    <option value="<%= book._id %>"><%= book.name %></option>
+                    <% }) %>
+                  </select>
+                  <button type="submit" class="bookclub">Add book</button>
+                </div>
+              </form>
+          </div>
+          <ul>
+              <% bookClub.shelf.forEach((book) => { %>
                 <li>
+                  <div class="book-item">
+                    <span>
                     <%= book.name %>  by <%=book.author %>.
                     <a href="/books/<%= book._id %>">See Details.</a>
+                    </span>
                     <% if (bookClub.owner._id.equals(user._id)) { %>
-                            <form action="/bookclubs/<%= bookClub._id %>?_method=DELETE" method="POST">
-                            <button type="submit">Delete this Club</button>
+                          <form action="/bookclubs/<%= bookClub._id %>/<%= book._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="bookclub">Remove this Book</button>
+                           </form>
                     <% } %>
+                  </div>
                 </li>
-                <% }) %>
-            </ul>
-        <% if (bookClub.owner._id.equals(user._id)) { %>
-        <div>
-            <form action="" method="POST"></form>/// DO THIS!!!!
-            <label for="bookSelect">Add a Book for this Club</label>
-            <select id="bookSelect" name="shelf" multiple >
-                <option value="" selected disabled hidden>Select</option>
-                <% books.forEach(book => { %>
-                <option value="<%= book._id %>"><%= book.name %></option>
-                <% }) %>
-            </select>
-        </div>
+              <% }) %>
+          </ul>
+
         <% } else{%>
         <p>Do you want to propose a new book? Contact <%= bookClub.owner.username%></p>
         <% } %>

@@ -15,4 +15,27 @@ footer {
     color:white; 
     padding:20px; 
     text-align:center;
-  }
+}
+
+  footer a {
+    text-decoration: none;
+    margin: 0 10px;
+    color: white;
+}
+
+/* .bookclub-actions {
+  display: inline-block;
+} */
+
+.book-item {
+  display: list-item;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.same-line{
+  
+}

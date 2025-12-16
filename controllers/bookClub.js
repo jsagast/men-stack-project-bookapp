@@ -86,36 +86,6 @@ router.delete('/:bookclubId', async (req, res) => {
     }
 });
 
-//Update
-
-router.get('/:bookclubId/edit', async (req, res) => {
-  try {
-    const currentBookClub = await BookClub.findById(req.params.bookclubId);
-    res.render('bookclubs/edit.ejs', {
-      book: currentBookClub,
-    });
-  } catch (error) {
-    console.log(error);
-    res.redirect('/');
-  }
-});
-
-router.put('/:bookId', async (req, res) => {
-  try {
-    const currentBook = await BookClub.findById(req.params.bookId);
-    if (currentBookClub.owner.equals(req.session.user._id)) {
-    currentBookClub.set(req.body);// to update
-    await currentBookClub.save();
-    res.redirect('/books');
-    } else {
-      res.send("You don't have permission to do that.");
-    }
-  } catch (error) {
-    console.log(error);
-    res.redirect('/');
-  }
-});
-
 // POST JOIN GROUP
 router.post('/:bookclubId/joined-by/:userId', async (req, res) => {
     try {
@@ -142,6 +112,47 @@ router.delete('/:bookclubId/joined-by/:userId', async (req, res) => {
     }
 });
 
+//Delete Book
+router.delete('/:bookclubId/:bookId', async (req, res) => {
+    try {
+        await BookClub.findByIdAndUpdate(req.params.bookclubId, {
+            $pull: { shelf: req.params.bookId },
+        })
+        res.redirect(`/bookclubs/${req.params.bookclubId}`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+});
+
+//Add Book
+
+router.post('/:bookclubId', async (req, res) => {
+    try {
+        await BookClub.findByIdAndUpdate(req.params.bookclubId, {
+            // $push: { shelf: req.body.bookId},
+            $addToSet:{shelf: req.body.bookId},
+        })
+        res.redirect(`/bookclubs/${req.params.bookclubId}`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+});
+
+//update frequency
+
+router.put('/:bookclubId', async (req, res) => {
+    try {
+        const currentBookClub=await BookClub.findById (req.params.bookclubId);
+        currentBookClub.frequency = req.body.frequency;
+        await currentBookClub.save();
+        res.redirect(`/bookclubs/${req.params.bookclubId}`)
+    } catch (error) {
+        console.log(error)
+        res.redirect('/')
+    }
+});
 
 module.exports = router;
 

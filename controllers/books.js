@@ -4,13 +4,10 @@ const router = express.Router();
 
 const User = require('../models/user.js');
 const Book = require('../models/book.js');
-// const BookClub=require('../models/bookclub.js')
 
 router.get('/', async (req, res) => {
    try {
-    // const populatedRecipes = await Recipe.find({}).populate('owner').populate('ingredients');
     const books = await Book.find().populate('owner');
-    // res.render ('books/index.ejs');
     res.render('books/index.ejs',{
       books,
     });
@@ -107,10 +104,8 @@ router.delete('/:bookId', async (req, res) => {
 router.get('/:bookId/edit', async (req, res) => {
   try {
     const currentBook = await Book.findById(req.params.bookId);
-    // const ingredients=await Book.find()
     res.render('books/edit.ejs', {
       book: currentBook,
-      // ingredients:ingredients
     });
   } catch (error) {
     console.log(error);
