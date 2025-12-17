@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Profile</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Search Results</h1>
+    <div class="book-list-container"> 
+        <ul class="book-list">
+        <% results.forEach((result) => { %>
+            <li class="book-item">
+            <img class="book-cover" src="<%= result.coverUrl %>" alt="Cover for <%= result.title %>">
+            <div class="book-info">
+                <strong><%= result.title %></strong><br>
+                Written by <%= result.author %>
+            </div>
+            </li>
+        <% }) %>
+        </ul>
+    </div>  
+      
+        
+        
+    <%- include('../partials/footer') %>
+    </body>
+</html>

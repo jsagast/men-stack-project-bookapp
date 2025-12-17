@@ -11,15 +11,15 @@ const bookSchema = new mongoose.Schema({
     },
     description:{
         type:String,
-        required: true,
     },
     genre:{
         type: String,
-        required: true,
     },
     pages:{
         type: Number,
-        required: true
+    },
+    coverURL:{
+        type: String,
     },
     owner:{
         type: mongoose.Schema.Types.ObjectId,

@@ -4,6 +4,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow-y: auto; 
 }
 
 footer {
@@ -13,7 +14,7 @@ footer {
     width: 100%;
     background-color: black;
     color:white; 
-    padding:20px; 
+    padding:15px; 
     text-align:center;
 }
 
@@ -23,10 +24,14 @@ footer {
     color: white;
 }
 
-/* .bookclub-actions {
-  display: inline-block;
-} */
-
+.book-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 15px;
+  padding-bottom: 80px;
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  border-radius: 8px;
+}
 .book-item {
   display: list-item;
   display: flex;
@@ -36,6 +41,29 @@ footer {
   margin-left: 20px;
 }
 
-.same-line{
-  
+.book-list {
+  list-style: none;       /* remove bullets */
+  padding: 0;
+  margin: 0;
+ 
+}
+
+.book-item {
+  display: flex;          /* place image and info side by side */
+  align-items: flex-start; /* align image top with text */
+  margin-bottom: 15px;    /* spacing between items */
+}
+
+.book-cover {
+  width: 100px;           /* fixed width */
+  height: auto;           /* keep aspect ratio */
+  margin-right: 15px;     /* space between image and text */
+  object-fit: cover;      /* crop nicely if needed */
+  border-radius: 4px;     /* optional: rounded corners */
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

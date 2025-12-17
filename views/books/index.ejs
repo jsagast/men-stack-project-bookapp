@@ -9,19 +9,27 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1>All Books</h1>
-    <a href="/books/new">Add a New Book</a>
+    <h1>DIGI Library</h1>
     <ul>
       <% books.forEach((book) => { %>
       <li>
-        <a href="/books/<%= book._id %>">
         <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username %>.
+        <a href="/books/<%= book._id %>">About this Book </a>
       </li>
       <% }) %>
     </ul>
 
+    <h1>Add a New Book</h1>
+
+    <a href="/books/new">Add a New Book</a>
+
+    <form action="/books/search" method="GET">
+      <label for="search"> Search by Title: </label>
+      <input  type="text" id="search" name="search" required>
+      <button type="submit">Search</button>
+    </form>
+
     <%- include('../partials/messages.ejs') %>
-    
     <%- include('../partials/footer') %>
   </body>
 </html>

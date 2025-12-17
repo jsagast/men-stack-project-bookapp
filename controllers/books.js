@@ -1,6 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
+const fetch= require('node-fetch');
 
 const User = require('../models/user.js');
 const Book = require('../models/book.js');
@@ -12,6 +13,35 @@ router.get('/', async (req, res) => {
       books,
     });
   } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
+router.get('/search', async(req,res)=>{//optional
+  // console.log(req.query.search);
+  try{
+    const response= await fetch(`https://openlibrary.org/search.json?title=${req.query.search}&language=eng`);
+    const data= await response.json();
+    console.log(data);
+
+    const results = data.docs
+    .filter(item => item.has_fulltext)  // just full text
+    .slice(0, 5)                         // first 5 only to avoid long list
+    .map(item=> {
+      const olid = item.cover_edition_key
+      return {
+        title: item.title,
+        author: item.author_name?.[0] || 'Unknown',
+        coverUrl: olid
+          ? `https://covers.openlibrary.org/b/olid/${olid}-M.jpg`
+          : '/images/no_cover.jpg'
+      };
+    });
+    res.render('books/index-search.ejs', {
+      results,
+    });
+  }catch(error) {
     console.log(error);
     res.redirect('/');
   }
