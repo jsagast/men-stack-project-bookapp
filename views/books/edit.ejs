@@ -10,14 +10,15 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Edit My Book </h1>
+    <div>
     <form action="/books/<%= book._id %>?_method=PUT"  method="POST">
       <div>
         <label for="name"> Book Title: </label>
-        <input  type="text" id="name" name="name" value="<%= book.name%>" required>
+        <input  type="text" id="name" name="name" value="<%= book.name%>" readonly>
       </div>
       <div>
         <label for="name"> Author: </label>
-        <input  type="text" id="name" name="author" value="<%= book.author%>" required>
+        <input  type="text" id="name" name="author" value="<%= book.author%>" readonly>
       </div>
       <div>
         <label for="desription">Description: </label>
@@ -54,6 +55,10 @@
       </div>
       <button type="submit">Update</button>
     </form>
+    </div>
+    <div>
+      <img class="book-cover" src="<%= book.coverURL %>" alt="Cover for <%= book.name %>">
+    </div>
   <%- include('../partials/footer') %>
   </body>
 </html>

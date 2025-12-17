@@ -16,6 +16,9 @@
         <p>No. of pages:<%= book.pages %></p>
       </div>
       <div>
+        <img class="book-cover" src="<%= book.coverURL %>" alt="Cover for <%= book.name %>">
+      </div>
+      <div>
         <p>Briefing: <%= book.description %></p>
         <p>Owner: <%= book.owner.username %></p>
       </div>

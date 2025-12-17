@@ -38,6 +38,17 @@
             </li>
             <% }) %>
         </ul>
+        <h2>My Book<%= myBookClubs.length === 1 ? 'Club' : 'Clubs' %></h2>
+            <ul>
+                <% myBookClubs.forEach((club) => { %>
+                <li>
+                    Name: <%= club.name %> /
+                    Administrator: <%= club.owner._id.equals(user._id) ? 'I am the Administrator': club.owner.username%> /
+                    Meetings:<%=club.frequency %>.
+                    <a href="/bookclubs/<%= club._id %>">See Details.</a>
+                </li>
+                <% }) %>
+            </ul>
         
     <%- include('../partials/footer') %>
     </body>
