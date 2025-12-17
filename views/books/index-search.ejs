@@ -18,6 +18,14 @@
                 <strong><%= result.title %></strong><br>
                 Written by <%= result.author %>
             </div>
+            <div class="book-select">
+                <form action="/books" method="POST">
+                    <input type="hidden" name="name" value="<%=result.title%>">
+                    <input type="hidden" name ="author" value="<%=result.author%>">
+                    <input type="hidden" name=""
+                    <button type="submit">Select</button>
+                </form>
+            </div>
             </li>
         <% }) %>
         </ul>

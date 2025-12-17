@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const path = require("path");
+const MongoStore = require("connect-mongo").default;
+
 
 
 const authController = require('./controllers/auth.js');
@@ -37,6 +39,9 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl:process.env.MONGODB_URI,
+    })
   })
 );
 

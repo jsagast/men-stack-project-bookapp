@@ -13,8 +13,10 @@ router.get('/sign-in', (req, res) => {
 });
 
 router.get('/sign-out', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
+  req.session.destroy(()=>{
+    res.redirect('/')
+  });
+  
 });
 
 router.post('/sign-up', async (req, res) => {
@@ -37,6 +39,14 @@ router.post('/sign-up', async (req, res) => {
   
     // All ready to create the new user!
     await User.create(req.body);
+
+    //     req.session.user = {
+    //   username: userInDatabase.username,
+    //   _id: userInDatabase._id
+    // };
+    // req.session.save(()=>{// mongo store
+    //   res.redirect('/users/profile');
+    // });
   
     res.redirect('/auth/sign-in');
   } catch (error) {
@@ -63,7 +73,9 @@ router.post('/sign-in', async (req, res) => {
       username: userInDatabase.username,
       _id: userInDatabase._id
     };
-    res.redirect('/users/profile');
+    req.session.save(()=>{// mongo store
+      res.redirect('/users/profile');
+    });
   } catch (error) {
     console.log(error);
     res.redirect('/');

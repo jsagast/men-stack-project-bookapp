@@ -32,25 +32,14 @@ footer {
   background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
   border-radius: 8px;
 }
-.book-item {
-  display: list-item;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  list-style: disc;
-  margin-left: 20px;
-}
 
 .book-list {
   list-style: none;       /* remove bullets */
-  padding: 0;
-  margin: 0;
- 
 }
 
 .book-item {
   display: flex;          /* place image and info side by side */
-  align-items: flex-start; /* align image top with text */
+  justify-content: space-around; /* align image top with text */
   margin-bottom: 15px;    /* spacing between items */
 }
 
@@ -63,6 +52,12 @@ footer {
 }
 
 .book-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.book-select {
   display: flex;
   flex-direction: column;
   justify-content: center;

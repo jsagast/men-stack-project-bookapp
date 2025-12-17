@@ -12,11 +12,11 @@
     <form action="/books" method="POST">
       <div>
         <label for="name"> Book Title: </label>
-        <input  type="text" id="name" name="name" required>
+        <input  type="text" id="name" name="name" value="<%=newBookInitialData.name%>" required >
       </div>
       <div>
         <label for="name"> Author: </label>
-        <input  type="text" id="name" name="author" required>
+        <input  type="text" id="name" name="author" value="<%=newBookInitialData.author%>" required>
       </div>
       <div>
         <label for="desription">Description: </label>
