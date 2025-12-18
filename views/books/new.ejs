@@ -9,50 +9,53 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Add a New Book </h1>
-    <form action="/books" method="POST">
-      <div>
-        <label for="name"> Book Title: </label>
-        <input  type="text" id="name" name="name" required >
-      </div>
-      <div>
-        <label for="name"> Author: </label>
-        <input  type="text" id="name" name="author" required>
-      </div>
-      <div>
-        <label for="desription">Description: </label>
-        <textarea  id="description" name="description" rows="5" maxlength="500" required></textarea>
-      </div>
-      <div>
-        <label for="genre"> Literary Genre: </label>
-        <input list="genres" id="genre" name="genre" placeholder="Select or type a genre" required>
-          <datalist id="genres">
-            <option value="Fantasy">
-            <option value="Science Fiction">
-            <option value="Mystery">
-            <option value="Thriller">
-            <option value="Romance">
-            <option value="Historical Fiction">
-            <option value="Horror">
-            <option value="Adventure">
-            <option value="Biography">
-            <option value="Memoir">
-            <option value="Self-Help">
-            <option value="History">
-            <option value="Science">
-            <option value="Travel">
-            <option value="Essay">
-            <option value="Philosophy">
-            <option value="Poetry">
-            <option value="Drama">
-            <option value="Graphic Novel">
-          </datalist>
-      </div>
-      <div>
-        <label for="pages"> Number of Pages: </label>
-        <input  type="number" id="pages" name="pages" min="0" required>
-      </div>
-      <button type="submit">Add Book</button>
-    </form>
+      <form action="/books" method="POST">
+        <fieldset class="information-legend">
+        <legend></legend>
+          <div class="form-group">
+            <label for="name"> Book Title: </label>
+            <input  type="text" id="name" name="name" required >
+          </div>
+          <div class="form-group">
+            <label for="name"> Author: </label>
+            <input  type="text" id="name" name="author" required>
+          </div>
+          <div class="form-group">
+            <label for="desription">Description: </label>
+            <textarea  id="description" name="description" rows="5" maxlength="500" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="genre"> Literary Genre: </label>
+            <input list="genres" id="genre" name="genre" placeholder="Select or type a genre" required>
+              <datalist id="genres">
+                <option value="Fantasy">
+                <option value="Science Fiction">
+                <option value="Mystery">
+                <option value="Thriller">
+                <option value="Romance">
+                <option value="Historical Fiction">
+                <option value="Horror">
+                <option value="Adventure">
+                <option value="Biography">
+                <option value="Memoir">
+                <option value="Self-Help">
+                <option value="History">
+                <option value="Science">
+                <option value="Travel">
+                <option value="Essay">
+                <option value="Philosophy">
+                <option value="Poetry">
+                <option value="Drama">
+                <option value="Graphic Novel">
+              </datalist>
+          </div>
+          <div class="form-group">
+            <label for="pages"> Number of Pages: </label>
+            <input  type="number" id="pages" name="pages" min="0" required>
+          </div>
+          <button type="submit" class="submitbtn">Add Book</button>
+        </fieldset>    
+     </form>
     
     <%- include('../partials/messages.ejs') %>
     

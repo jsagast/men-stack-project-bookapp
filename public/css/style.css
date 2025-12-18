@@ -18,10 +18,19 @@ footer {
     text-align:center;
 }
 
-  footer a {
+footer a {
     text-decoration: none;
     margin: 0 10px;
     color: white;
+}
+
+.content-container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 15px;
+  padding-bottom: 80px;
+  background-color: rgba(255, 255, 255, 0.649); 
+  border-radius: 8px;
 }
 
 .book-list-container {
@@ -29,7 +38,7 @@ footer {
   margin: 0 auto;
   padding: 15px;
   padding-bottom: 80px;
-  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.867);
   border-radius: 8px;
 }
 
@@ -43,13 +52,13 @@ footer {
   margin-bottom: 15px;    /* spacing between items */
 }
 
-.book-cover {
+/* .book-cover {
   width: 100px;           /* fixed width */
-  height: auto;           /* keep aspect ratio */
-  margin-right: 15px;     /* space between image and text */
-  object-fit: cover;      /* crop nicely if needed */
-  border-radius: 4px;     /* optional: rounded corners */
-}
+  /* height: auto;           /* keep aspect ratio */
+  /* margin-right: 15px;     space between image and text */
+  /* object-fit: cover;      crop nicely if needed */
+  /* border-radius: 4px;     optional: rounded corners */ */
+/* } */ */
 
 .book-info {
   display: flex;
@@ -61,4 +70,132 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.information-legend {
+    max-width: 800px;
+    border-radius: 5px;
+    padding: 2 px;
+    margin:0;
+    background-color: rgba(255, 255, 255, 0.649); 
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+input[type=text],[type=number],[list='frequencies'], [list='genres'] {
+    width: 30%;
+    padding: 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.select-box{
+    width: 30%;
+    padding: 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+textarea {
+  width: 30%;
+  height: 150px;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius:15px;
+  font-size: 16px;
+  resize: none;
+}
+
+button{
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  font-size: 15px;
+  border-radius:25px ;
+}
+
+.deletebtn{
+    background-color: rgb(152, 23, 23);
+    border-radius: 1.5625rem;
+    padding: 5px 30px;
+    color:white;
+}
+
+.submitbtn{
+    background-color: rgb(46, 123, 46);
+    border-radius: 1.5625rem;
+    padding: 5px 30px;
+    color:white;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+
+a {
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.5s;
+    margin: 0px 5px;
+  }
+
+a:hover {
+    background-color: rgb(238, 199, 126);
+}
+
+.head{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+label{
+  font-weight: bold;
+}
+
+p, span{
+  font-weight: bold;
+}
+
+.information-container {
+  max-width: 800px;
+  background-color: rgba(231, 224, 224, 0.599);
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 10px 40px;
+  border-radius: 8px;
+}
+
+.book-text {
+  flex: 1;                       /* take all remaining space */
+}
+
+.book-text input,
+.book-text textarea,
+.book-text select {
+  width: 100%;                   /* make inputs stretch full width */
+  box-sizing: border-box;        /* include padding and border in width */
+}
+
+.book-image {
+  flex-shrink: 0;
+}
+
+.book-cover {
+  max-width: 200px;
+  height: auto;
+  display: block;
 }

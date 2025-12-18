@@ -8,65 +8,65 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>A CLOSER LOOK</h1>
-    <h2><%= book.name %> by <%= book.author%></h2>
-    <section id="content">
-      <div>
-        <p>Genre: <%= book.genre %></p>
-        <p>No. of pages:<%= book.pages %></p>
-      </div>
-      <div>
-        <img class="book-cover" src="<%= book.coverURL %>" alt="Cover for <%= book.name %>">
-      </div>
-      <div>
-        <p>Briefing: <%= book.description %></p>
-        <p>Owner: <%= book.owner.username %></p>
-      </div>
-
-    
-   <!-- Edit and delete if owner -->
-     <% if (book.owner._id.equals(user._id)) { %>
-      <a href="/books/<%= book._id %>/edit" class="btn"> Edit this Entry </a>
-      <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete this Book</button>
-      </form>
-    <% } %>
+    <div class="head">
+      <h1>A CLOSER LOOK</h1>
+      <h2><%= book.name %> by <%= book.author%></h2>
+    </div>
+    <div class="information-container"> 
+      <div class="book-text">
+      
+        <p><strong>Genre:</strong> <%= book.genre %></p>
+        <p> <strong>No. of pages: </strong><%= book.pages %></p>
+        <p><strong>Briefing: </strong> <%= book.description %></p>
+        <p><strong>Owner: </strong> <%= book.owner.username %></p>
+     
+        <!-- Edit and delete if owner -->
+        <% if (book.owner._id.equals(user._id)) { %>
+        <a href="/books/<%= book._id %>/edit" class="btn"> Edit this Entry </a>
+        <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+          <button type="submit" class="deletebtn">Delete this Book</button>
+        </form>
+        <% } %>
 
     <!--  Managing Favorites-->
-   <% if (userHasFavorited) { %>
-        <p>This is one of you favorite books!</p>
+        <% if (userHasFavorited) { %>
+        <p><strong>This is one of you favorite books!</strong></p>
         <form
             action="/books/<%= book._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
-            <button type="submit">Unfavorite it</button>
+            <button type="submit" class="deletebtn">Unfavorite it</button>
         </form>
         <% } else { %>
-        <p>Do you want to add this book to your favorites?.</p>
+        <p><strong>Do you want to add this book to your favorites?.</strong></p>
 
         <form
             action="/books/<%= book._id %>/favorited-by/<%= user._id %>"method="POST">
-            <button type="submit">Add to My Favorites</button>
+            <button type="submit" class="submitbtn">Add to My Favorites</button>
         </form>
 
-    <% } %>
+        <% } %>
 
     <!--  Add to Shelf-->
-   <% if (userHasPulled) { %>
-        <p>You have this book in your shelf!</p>
+        <% if (userHasPulled) { %>
+        <p><strong>You have this book in your shelf!</strong></p>
         <form
             action="/books/<%= book._id %>/pulled-by/<%= user._id %>?_method=DELETE" method="POST">
-            <button type="submit">Remove from Shelf</button>
+            <button type="submit" class="deletebtn">Remove from Shelf</button>
         </form>
         <% } else { %>
-        <p>Do you want to add this book to your shelf?</p>
+        <p><strong>Do you want to add this book to your shelf?</strong></p>
 
         <form
             action="/books/<%= book._id %>/pulled-by/<%= user._id %>"method="POST">
-            <button type="submit">Add to My Shelf</button>
+            <button type="submit" class="submitbtn">Add to My Shelf</button>
         </form>
 
-    <% } %>
+        <% } %>
+    </div>
 
-    
+    <div class="book-image">
+      <img class="book-cover" src="<%= book.coverURL %>" alt="Cover for <%= book.name %>">
+    </div>
+  </div>  
   <%- include('../partials/footer') %>
   </body>
 </html>

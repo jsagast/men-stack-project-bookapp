@@ -9,47 +9,48 @@
     <body>
         <%- include('../partials/_navbar.ejs') %>
         <h1>My Profile</h1>
-        <h2>Books in my Shelf</h2>
-            <ul>
-                <% myShelf.forEach((item) => { %>
-                <li>
-                    Name: <%= item.name %> added by <%=
-                    item.owner.username %>.
-                    <a href="/books/<%= item._id %>">See Details.</a>
-                </li>
-                <% }) %>
-            </ul>
+        <div class="content-container"> 
+            <h2>Books in my Shelf</h2>
+                <ul>
+                    <% myShelf.forEach((item) => { %>
+                    <li>
+                        <%= item.name %> added by <%=
+                        item.owner.username %>.
+                        <a href="/books/<%= item._id %>">See Details.</a>
+                    </li>
+                    <% }) %>
+                </ul>
 
-        <h2><%= myBooks.length === 1 ? 'Book' : 'Books' %> I own</h2>
+            <h2><%= myBooks.length === 1 ? 'Book' : 'Books' %> I own</h2>
+                <ul>
+                    <% myBooks.forEach((book) => { %>
+                    <li>
+                    <%= book.name %>  by <%=book.author %>.
+                        <a href="/books/<%= book._id %>">See Details.</a>
+                    </li>
+                    <% }) %>
+                </ul>
+            <h2>My Favorite <%= myFavoriteBooks.length === 1 ? 'Book' : 'Books' %> </h2>
             <ul>
-                <% myBooks.forEach((book) => { %>
+                <% myFavoriteBooks.forEach((book) => { %>
                 <li>
                     Name: <%= book.name %>  by <%=book.author %>.
                     <a href="/books/<%= book._id %>">See Details.</a>
                 </li>
                 <% }) %>
             </ul>
-        <h2>My Favorite <%= myFavoriteBooks.length === 1 ? 'Book' : 'Books' %> </h2>
-        <ul>
-            <% myFavoriteBooks.forEach((book) => { %>
-            <li>
-                Name: <%= book.name %>  by <%=book.author %>.
-                <a href="/books/<%= book._id %>">See Details.</a>
-            </li>
-            <% }) %>
-        </ul>
-        <h2>My Book<%= myBookClubs.length === 1 ? 'Club' : 'Clubs' %></h2>
-            <ul>
-                <% myBookClubs.forEach((club) => { %>
-                <li>
-                    Name: <%= club.name %> /
-                    Administrator: <%= club.owner._id.equals(user._id) ? 'I am the Administrator': club.owner.username%> /
-                    Meetings:<%=club.frequency %>.
-                    <a href="/bookclubs/<%= club._id %>">See Details.</a>
-                </li>
-                <% }) %>
-            </ul>
-        
+            <h2>My Book<%= myBookClubs.length === 1 ? 'Club' : 'Clubs' %></h2>
+                <ul>
+                    <% myBookClubs.forEach((club) => { %>
+                    <li>
+                        <strong>Name:</strong> <%= club.name %> /
+                        <strong>Administrator: </strong><%= club.owner._id.equals(user._id) ? 'I am the Administrator': club.owner.username%> /
+                        <strong>Meetings:</strong><%=club.frequency %>.
+                        <a href="/bookclubs/<%= club._id %>">See Details.</a>
+                    </li>
+                    <% }) %>
+                </ul>
+    </div>    
     <%- include('../partials/footer') %>
     </body>
 </html>

@@ -11,18 +11,19 @@
     <%- include('../partials/_navbar.ejs') %>
 
     <h1>Book Club Lounge</h1>
-    <a href="/bookclubs/new">Start a New Book Club</a>
-    <ul>
-      <% bookClubs.forEach((club) => { %>
-      <li>
-        <a href="/bookclubs/<%= club._id %>"> Explore Club. </a>
-        <%= club.name %>. Hosted by  <%= club.owner.username %>.
-      </li>
-      <% }) %>
-    </ul>
+    <div class="content-container"> 
+        <a href="/bookclubs/new">Start a New Book Club</a>
+        <ul>
+          <% bookClubs.forEach((club) => { %>
+          <li>
+            <a href="/bookclubs/<%= club._id %>"> Explore Club. </a>
+            <%= club.name %>. Hosted by  <%= club.owner.username %>.
+          </li>
+          <% }) %>
+        </ul>
 
-    <%- include('../partials/messages.ejs') %>
-    
+        <%- include('../partials/messages.ejs') %>
+    </div>
   
   <%- include('../partials/footer') %>
   </body>

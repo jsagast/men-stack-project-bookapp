@@ -11,7 +11,7 @@
     <%- include('../partials/_navbar.ejs') %>
     <h1><%= bookClub.name %></h1>
     <h2>Details</h2>
-    <section id="content">
+    <div class="content-container">
       <div>
         <p>Frequency of Meetings: <%= bookClub.frequency %></p>
         <% if (bookClub.owner._id.equals(user._id)) { %>
@@ -23,7 +23,7 @@
                   <option value="Bi-Weekly">
                   <option value="Monthly">
               </datalist>
-            <button type="submit">Update the Frequency</button>
+            <button type="submit" class="submitbtn">Update the Frequency</button>
           </form>
         <% } %>
         <p>Administrator: <%= bookClub.owner.username%></p>
@@ -42,13 +42,13 @@
               <form action="/bookclubs/<%= bookClub._id %>" method="POST">
                 <label for="bookId"><h4>Add a book to this club </h4></label>
                 <div class="same-line">
-                  <select id="bookId" name="bookId" required>
+                  <select id="bookId" name="bookId" class="select-box" required>
                     <option value="" disabled selected>Select a book</option>
                     <% books.forEach(book => { %>
                     <option value="<%= book._id %>"><%= book.name %></option>
                     <% }) %>
                   </select>
-                  <button type="submit" class="bookclub">Add book</button>
+                  <button type="submit" class="submitbtn">Add book</button>
                 </div>
               </form>
           </div>
@@ -62,7 +62,7 @@
                     </span>
                     <% if (bookClub.owner._id.equals(user._id)) { %>
                           <form action="/bookclubs/<%= bookClub._id %>/<%= book._id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="bookclub">Remove this Book</button>
+                            <button type="submit" class="deletebtn">Remove this Book</button>
                            </form>
                     <% } %>
                   </div>
@@ -77,24 +77,24 @@
 
    <!-- Edit and delete if owner -->
      <% if (bookClub.owner._id.equals(user._id)) { %>
-      <a href="/bookclubs/<%= bookClub._id %>/edit" class="btn"> Edit this Club </a>
       <form action="/bookclubs/<%= bookClub._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete this Club</button>
+        <button type="submit" class="deletebtn">Delete this Club</button>
       </form>
     <% } %>
     <%if (userHasJoined){%>
         <p> You are part of this Club!</p>
         <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>?_method=DELETE" method="POST">
-            <button type="submit">Leave the Club</button>
+            <button type="submit" class="deletebtn">Leave the Club</button>
         </form>
      <% } else { %>
         <p> Join today!</p>
         <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>" method="POST">
-            <button type="submit">Join this Club</button>
+            <button type="submit" class="submitbtn">Join this Club</button>
         </form>
     <% } %>
 
     <%- include('../partials/footer') %>
+  </div>  
   </body>
 </html>
 

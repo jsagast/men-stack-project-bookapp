@@ -10,31 +10,35 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Start a New Book Club </h1>
-    <form action="/bookclubs" method="POST">
-      <div>
-        <label for="name"> Name: </label>
-        <input  type="text" id="name" name="name" required>
-      </div>
-      <div>
-        <label for="frequency"> Meeting Frequency: </label>
-        <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a frequency" required>
-          <datalist id="frequencies">
-            <option value="Weekly">
-            <option value="Bi-Weekly">
-            <option value="Monthly">
-          </datalist>
-      </div>
-      <div>
-        <label for="bookSelect">Choose a Book for this Club</label>
-          <select id="bookSelect" name="shelf" >
-            <option value="" selected disabled hidden>Select</option>
-            <% books.forEach(book => { %>
-              <option value="<%= book._id %>"><%= book.name %></option>
-            <% }) %>
-          </select>
-      </div>
 
-      <button type="submit">Start Book Club</button>
+    <form action="/bookclubs" method="POST">
+      <fieldset class="information-legend">
+        <legend></legend>
+        <div class="form-group">
+          <label for="name">Name: </label>
+          <input  type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="frequency"> Meeting Frequency: </label>
+          <input list="frequencies" id="genre" name="frequency" placeholder="Select or type a frequency" required>
+            <datalist id="frequencies">
+              <option value="Weekly">
+              <option value="Bi-Weekly">
+              <option value="Monthly">
+            </datalist>
+        </div>
+        <div class="form-group">
+          <label for="bookSelect">Choose a Book for this Club</label>
+            <select id="bookSelect" name="shelf" class="select-box">
+              <option value="" selected disabled hidden>Select</option>
+              <% books.forEach(book => { %>
+                <option value="<%= book._id %>"><%= book.name %></option>
+              <% }) %>
+            </select>
+        </div>
+
+        <button type="submit" class="submitbtn">Start Book Club</button>
+    </fieldset>   
     </form>
 
     <%- include('../partials/messages.ejs') %>

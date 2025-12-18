@@ -10,24 +10,32 @@
     <%- include('../partials/_navbar.ejs') %>
 
     <h1>DIGI Library</h1>
-    <ul>
-      <% books.forEach((book) => { %>
-      <li>
-        <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username %>.
-        <a href="/books/<%= book._id %>">About this Book </a>
-      </li>
-      <% }) %>
-    </ul>
+    <div class="content-container"> 
+      <ul>
+        <% books.forEach((book) => { %>
+        <li>
+          <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username %>.
+          <a href="/books/<%= book._id %>">About this Book </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
 
     <h1>Add a New Book</h1>
+    <div class="content-container">
+      <form action="/books/search" method="GET">
+        <label for="search"> <strong>Search by Title: </strong></label>
+        <input  type="text" id="search" name="search" required>
+        <button type="submit" class="submitbtn">Search</button>
+      </form>
 
-    <a href="/books/new">Add a New Book</a>
+      <div>
+        <span>No Results?</span>
+        <a href="/books/new">Let's Add It Manually</a>
+      </div>
+    </div>
+    
 
-    <form action="/books/search" method="GET">
-      <label for="search"> Search by Title: </label>
-      <input  type="text" id="search" name="search" required>
-      <button type="submit">Search</button>
-    </form>
 
     <%- include('../partials/messages.ejs') %>
     <%- include('../partials/footer') %>
