@@ -55,26 +55,6 @@ router.get('/new', async(req,res)=>{
     });
 });
 
-//post new
-// router.post('/', async (req, res) => {
-//   try {
-//       const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
-
-//     if (exists) {
-//       req.flash('error', 'Book already exists in the collection');
-//       return res.redirect('/books/new');
-//     }
-//     const newBook=new Book(req.body);
-//     newBook.owner=req.session.user._id;
-//     await newBook.save();
-//     req.flash('success', 'Book created successfully!');
-//     res.redirect('/books');
-
-//   } catch (error) {
-//     req.flash('error', 'Something went wrong');
-//     res.redirect('/');
-//   }
-// });
 
 //post with API working
 router.post('/', async (req, res) => {
@@ -97,54 +77,6 @@ router.post('/', async (req, res) => {
     res.redirect('/');
   }
 });
-
-
-// //adding new with API
-// router.post('/search', async (req, res) => {
-//   try {
-//     // const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
-
-//     // if (exists) {
-//     //   req.flash('error', 'Book already exists in the collection');
-//     //   return res.redirect('/books');
-//     // };
-//     const newBook= new Book(req.body);
-//     newBook.owner=req.session.user._id;
-//     await newBook.save();
-//     res.redirect('books/new.ejs',{
-//       newBook,
-//     });
-   
-//     // req.flash('success', 'Book created successfully!');
-//     // res.redirect('/books');
-
-//   } catch (error) {
-//     req.flash('error', 'Something went wrong');
-//     res.redirect('/');
-//   }
-// });
-
-// router.post('/', async (req, res) => {
-//   try {
-//       const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
-
-//     if (exists) {
-//       req.flash('error', 'Book already exists in the collection');
-//       return res.redirect('/books/new');
-//     }
-//     const newBook=new Book(req.body);
-//     newBook.owner=req.session.user._id;
-//     await newBook.save();
-//     req.flash('success', 'Book created successfully!');
-//     res.redirect('/books');
-
-//   } catch (error) {
-//     req.flash('error', 'Something went wrong');
-//     res.redirect('/');
-//   }
-// });
-
-
 
 //show book detail
 router.get('/:bookId', async (req, res) => {
@@ -268,3 +200,73 @@ router.delete('/:bookId/pulled-by/:userId', async (req, res) => {
 
 
 module.exports = router;
+
+
+// More code experimenting more ways
+
+//post new
+// router.post('/', async (req, res) => {
+//   try {
+//       const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
+
+//     if (exists) {
+//       req.flash('error', 'Book already exists in the collection');
+//       return res.redirect('/books/new');
+//     }
+//     const newBook=new Book(req.body);
+//     newBook.owner=req.session.user._id;
+//     await newBook.save();
+//     req.flash('success', 'Book created successfully!');
+//     res.redirect('/books');
+
+//   } catch (error) {
+//     req.flash('error', 'Something went wrong');
+//     res.redirect('/');
+//   }
+// });
+
+
+// //adding new with API
+// router.post('/search', async (req, res) => {
+//   try {
+//     // const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
+
+//     // if (exists) {
+//     //   req.flash('error', 'Book already exists in the collection');
+//     //   return res.redirect('/books');
+//     // };
+//     const newBook= new Book(req.body);
+//     newBook.owner=req.session.user._id;
+//     await newBook.save();
+//     res.redirect('books/new.ejs',{
+//       newBook,
+//     });
+   
+//     // req.flash('success', 'Book created successfully!');
+//     // res.redirect('/books');
+
+//   } catch (error) {
+//     req.flash('error', 'Something went wrong');
+//     res.redirect('/');
+//   }
+// });
+
+// router.post('/', async (req, res) => {
+//   try {
+//       const exists = await Book.findOne({ name: req.body.name, author: req.body.author });
+
+//     if (exists) {
+//       req.flash('error', 'Book already exists in the collection');
+//       return res.redirect('/books/new');
+//     }
+//     const newBook=new Book(req.body);
+//     newBook.owner=req.session.user._id;
+//     await newBook.save();
+//     req.flash('success', 'Book created successfully!');
+//     res.redirect('/books');
+
+//   } catch (error) {
+//     req.flash('error', 'Something went wrong');
+//     res.redirect('/');
+//   }
+// });

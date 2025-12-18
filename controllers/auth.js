@@ -40,15 +40,15 @@ router.post('/sign-up', async (req, res) => {
     // All ready to create the new user!
     await User.create(req.body);
 
-    //     req.session.user = {
-    //   username: userInDatabase.username,
-    //   _id: userInDatabase._id
-    // };
-    // req.session.save(()=>{// mongo store
-    //   res.redirect('/users/profile');
-    // });
+    req.session.user = {
+      username: User.username,
+      _id: User._id
+    };
+    req.session.save(()=>{// mongo store
+      res.redirect('/users/profile');
+    });
   
-    res.redirect('/auth/sign-in');
+    // res.redirect('/auth/sign-in');
   } catch (error) {
     console.log(error);
     res.redirect('/');

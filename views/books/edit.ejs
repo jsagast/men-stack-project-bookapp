@@ -10,6 +10,7 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Edit My Book </h1>
+    <a href="/books/<%=book._id%>" class="back-link" >&larr; Go Back</a>
     <div class="information-container">
       <div class="book-text">
         <form action="/books/<%= book._id %>?_method=PUT"  method="POST">

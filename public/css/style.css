@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+
+
 body {
   min-height: 100vh;
   background-image: url('/images/books.jpg');
@@ -52,14 +55,6 @@ footer a {
   margin-bottom: 15px;    /* spacing between items */
 }
 
-/* .book-cover {
-  width: 100px;           /* fixed width */
-  /* height: auto;           /* keep aspect ratio */
-  /* margin-right: 15px;     space between image and text */
-  /* object-fit: cover;      crop nicely if needed */
-  /* border-radius: 4px;     optional: rounded corners */ */
-/* } */ */
-
 .book-info {
   display: flex;
   flex-direction: column;
@@ -86,8 +81,18 @@ footer a {
   margin-bottom: 1rem;
 }
 
-input[type=text],[type=number],[list='frequencies'], [list='genres'] {
+input[type=text],[type=number],[list='frequencies'], [list='genres'], [type=password] {
     width: 30%;
+    padding: 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+input[type=password] {
+    width: 10%;
     padding: 5px;
     margin: 8px 0;
     display: inline-block;
@@ -198,4 +203,54 @@ p, span{
   max-width: 200px;
   height: auto;
   display: block;
+}
+
+.hero {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh - 150px); /* adjust to footer height */
+  display: flex;
+}
+
+.hero h1 {
+  /* clamp(MIN, PREFERRED, MAX) */
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.3rem;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  font-family: "Fredericka the Great", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.back-link{
+  text-decoration: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: rgb(233, 58, 58);
+  border-radius: 25px;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  background-color: black;
+  width: calc(100vw); /* viewport width instead of 100% of body */
+  margin: 0;
+  margin-left: -8px; /* or whatever default body margin is */
+  margin-top: -8px;           /* aligns to the left edge of viewport */
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
 }

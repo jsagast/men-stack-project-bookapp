@@ -14,7 +14,7 @@
       <ul>
         <% books.forEach((book) => { %>
         <li>
-          <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username %>.
+          <%= book.name %>. Written by <%= book.author %>. Added by <%= book.owner.username? book.owner.username: 'unknown' %>.
           <a href="/books/<%= book._id %>">About this Book </a>
         </li>
         <% }) %>
