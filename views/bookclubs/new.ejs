@@ -9,8 +9,7 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Start a New Book Club </h1>
-
+    <h1>Start a New Book Club </h1>    
     <form action="/bookclubs" method="POST">
       <fieldset class="information-legend">
         <legend></legend>
@@ -38,8 +37,12 @@
         </div>
 
         <button type="submit" class="submitbtn">Start Book Club</button>
+
+        <a href="/bookclubs" class="back-link" >&larr; Go Back</a>
     </fieldset>   
     </form>
+
+    
 
     <%- include('../partials/messages.ejs') %>
 
