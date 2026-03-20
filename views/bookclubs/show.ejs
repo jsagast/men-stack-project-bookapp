@@ -38,24 +38,10 @@
 
         <h2><%= bookClub.shelf.length === 0 ? 'No Books Added Yet': bookClub.shelf.length === 1? 'Book:': 'Books:' %></h2>
           <% if (bookClub.owner._id.equals(user._id)) { %>
-          <div>
-              <form action="/bookclubs/<%= bookClub._id %>" method="POST">
-                <label for="bookId"><h4>Add a book to this club </h4></label>
-                <div class="same-line">
-                  <select id="bookId" name="bookId" class="select-box" required>
-                    <option value="" disabled selected>Select a book</option>
-                    <% books.forEach(book => { %>
-                    <option value="<%= book._id %>"><%= book.name %></option>
-                    <% }) %>
-                  </select>
-                  <button type="submit" class="submitbtn">Add book</button>
-                </div>
-              </form>
-          </div>
-          <ul>
+          <ul class="book-list">
               <% bookClub.shelf.forEach((book) => { %>
-                <li>
-                  <div class="book-item">
+                <li class="book-item">
+                  <div class="book-info">
                     <span>
                     <%= book.name %>  by <%=book.author %>.
                     <a href="/books/<%= book._id %>">See Details.</a>
@@ -70,8 +56,23 @@
               <% }) %>
           </ul>
 
+          <div>
+              <form action="/bookclubs/<%= bookClub._id %>" method="POST">
+                <!-- <label for="bookId"><h4>Add a book to this club </h4></label> -->
+                <div class="same-line">
+                  <select id="bookId" name="bookId" class="select-box" required>
+                    <option value="" disabled selected>Select a book</option>
+                    <% books.forEach(book => { %>
+                    <option value="<%= book._id %>"><%= book.name %></option>
+                    <% }) %>
+                  </select>
+                  <button type="submit" class="submitbtn">Add book</button>
+                </div>
+              </form>
+          </div>
+
         <% } else{%>
-        <p>Do you want to propose a new book? Contact <%= bookClub.owner.username%></p>
+        <p>Do you want to add a new book? Contact <%= bookClub.owner.username%></p>
         <% } %>
       </div>
 
@@ -82,12 +83,12 @@
       </form>
     <% } %>
     <%if (userHasJoined){%>
-        <p> You are part of this Club!</p>
+        <!-- <p> You are part of this Club!</p> -->
         <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>?_method=DELETE" method="POST">
             <button type="submit" class="deletebtn">Leave the Club</button>
         </form>
      <% } else { %>
-        <p> Join today!</p>
+        <!-- <p> Join today!</p> -->
         <form action="/bookclubs/<%= bookClub._id %>/joined-by/<%= user._id %>" method="POST">
             <button type="submit" class="submitbtn">Join this Club</button>
         </form>

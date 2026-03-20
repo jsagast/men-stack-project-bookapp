@@ -22,7 +22,7 @@
      
         <!-- Edit and delete if owner -->
         <% if (book.owner._id.equals(user._id)) { %>
-        <a href="/books/<%= book._id %>/edit" class="btn"> Edit this Entry </a>
+        <a href="/books/<%= book._id %>/edit" class="editbtn"> Edit this Entry </a>
         <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
           <button type="submit" class="deletebtn">Delete this Book</button>
         </form>
@@ -30,13 +30,13 @@
 
     <!--  Managing Favorites-->
         <% if (userHasFavorited) { %>
-        <p><strong>This is one of you favorite books!</strong></p>
+        <!-- <p><strong>This is one of you favorite books!</strong></p> -->
         <form
             action="/books/<%= book._id %>/favorited-by/<%= user._id %>?_method=DELETE" method="POST">
             <button type="submit" class="deletebtn">Unfavorite it</button>
         </form>
         <% } else { %>
-        <p><strong>Do you want to add this book to your favorites?.</strong></p>
+        <!-- <p><strong>Do you want to add this book to your favorites?.</strong></p> -->
 
         <form
             action="/books/<%= book._id %>/favorited-by/<%= user._id %>"method="POST">
@@ -47,13 +47,13 @@
 
     <!--  Add to Shelf-->
         <% if (userHasPulled) { %>
-        <p><strong>You have this book in your shelf!</strong></p>
+        <!-- <p><strong>You have this book in your shelf!</strong></p> -->
         <form
             action="/books/<%= book._id %>/pulled-by/<%= user._id %>?_method=DELETE" method="POST">
             <button type="submit" class="deletebtn">Remove from Shelf</button>
         </form>
         <% } else { %>
-        <p><strong>Do you want to add this book to your shelf?</strong></p>
+        <!-- <p><strong>Do you want to add this book to your shelf?</strong></p> -->
 
         <form
             action="/books/<%= book._id %>/pulled-by/<%= user._id %>"method="POST">

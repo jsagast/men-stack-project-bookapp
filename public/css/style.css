@@ -21,6 +21,7 @@ footer {
     text-align:center;
 }
 
+
 footer a {
     text-decoration: none;
     margin: 0 10px;
@@ -121,32 +122,6 @@ textarea {
   font-size: 16px;
   resize: none;
 }
-
-button{
-  cursor: pointer;
-  font-weight: 700;
-  padding: 10px 20px;
-  border: 1px solid transparent;
-  font-size: 15px;
-  border-radius:25px ;
-}
-
-.deletebtn{
-    background-color: rgb(152, 23, 23);
-    border-radius: 1.5625rem;
-    padding: 5px 30px;
-    color:white;
-}
-
-.submitbtn{
-    background-color: rgb(46, 123, 46);
-    border-radius: 1.5625rem;
-    padding: 5px 30px;
-    color:white;
-    margin: 10px 0;
-    cursor: pointer;
-}
-
 
 a {
     color: black;
@@ -254,3 +229,91 @@ p, span{
 .navbar a:hover {
   text-decoration: underline;
 }
+
+
+.btn,
+.editbtn,
+.submitbtn,
+.deletebtn {
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 25px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  transition: all 0.3s ease;
+  margin: 8px 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.editbtn {
+  background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+  color: white;
+}
+
+.editbtn:hover {
+  background: linear-gradient(135deg, #2a5ca0, #00aacc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.editbtn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.submitbtn {
+  background: linear-gradient(135deg, #2e7b2e, #4caf50);
+  color: white;
+}
+
+.submitbtn:hover {
+  background: linear-gradient(135deg, #256525, #3e9442);
+  transform: translateY(-2px);
+}
+
+.deletebtn {
+  background: linear-gradient(135deg, #981717, #e53935);
+  color: white;
+}
+
+.deletebtn:hover {
+  background: linear-gradient(135deg, #7a1212, #c62828);
+  transform: translateY(-2px);
+}
+
+
+a.btn,
+a.editbtn {
+  color: white; 
+}
+
+a:hover.editbtn {
+  background-color: unset; 
+}
+
+.book-list {
+  padding: 0;
+  margin-top: 10px;
+}
+
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+
